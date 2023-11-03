@@ -1,173 +1,157 @@
 const initialState = {
-    income: [],
-    expenses: [],
-    savings: [],
-    loading: false,
-    error: null,
-  };
-  
-  const financeReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'FETCH_INCOME_SUCCESS':
-        return {
-          ...state,
-          income: action.payload,
-          loading: false,
-          error: null,
-        };
-  
-      case 'FETCH_INCOME_FAILURE':
-        return {
-          ...state,
-          loading: false,
-          error: 'Error fetching income data',
-        };
-  
-      case 'FETCH_DATA_LOADING':
-        return {
-          ...state,
-          loading: true,
-        };
-  
-      case 'ADD_INCOME_SUCCESS':
-        return {
-          ...state,
-          income: [...state.income, action.payload],
-          loading: false,
-          error: null,
-        };
-  
-      case 'ADD_INCOME_FAILURE':
-        return {
-          ...state,
-          loading: false,
-          error: 'Error adding income',
-        };
-        
-        case 'DELETE_INCOME_SUCCESS':
-            
-            const updatedIncome = state.income.filter((income) => income._id !== action.payload._id);
-            return {
-              ...state,
-              income: updatedIncome,
-              loading: false,
-              error: null,
-            };
-      
-          case 'DELETE_INCOME_FAILURE':
-            return {
-              ...state,
-              loading: false,
-              error: 'Error deleting income',
-            };
-  
-            
-            
-            
-            
-            
-            case 'FETCH_EXPENSE_SUCCESS':
-                return {
-                  ...state,
-                  expenses: action.payload,
-                  loading: false,
-                  error: null,
-                };
-          
-              case 'FETCH_EXPENSE_FAILURE':
-                return {
-                  ...state,
-                  loading: false,
-                  error: 'Error fetching expenses data',
-                };
-          
-              case 'ADD_EXPENSE_SUCCESS':
-                return {
-                  ...state,
-                  expenses: [...state.expenses, action.payload],
-                  loading: false,
-                  error: null,
-                };
-          
-              case 'ADD_EXPENSE_FAILURE':
-                return {
-                  ...state,
-                  loading: false,
-                  error: 'Error adding expenses',
-                };
-                
-                case 'DELETE_EXPENSE_SUCCESS':
-                    
-                    const updatedExpense = state.expenses.filter((expenses) => expenses._id !== action.payload._id);
-                    return {
-                      ...state,
-                      expenses: updatedExpense,
-                      loading: false,
-                      error: null,
-                    };
-              
-                  case 'DELETE_EXPENSE_FAILURE':
-                    return {
-                      ...state,
-                      loading: false,
-                      error: 'Error deleting expenses',
-                    };
-                    
-                    
-                    
-                    
-    
-            case 'FETCH_SAVING_SUCCESS':
-                return {
-                  ...state,
-                  savings: action.payload,
-                  loading: false,
-                  error: null,
-                };
-          
-              case 'FETCH_SAVING_FAILURE':
-                return {
-                  ...state,
-                  loading: false,
-                  error: 'Error fetching savings data',
-                };
-          
-              case 'ADD_SAVING_SUCCESS':
-                return {
-                  ...state,
-                  savings: [...state.savings, action.payload],
-                  loading: false,
-                  error: null,
-                };
-          
-              case 'ADD_SAVING_FAILURE':
-                return {
-                  ...state,
-                  loading: false,
-                  error: 'Error adding savings',
-                };
-                
-                case 'DELETE_SAVING_SUCCESS':
-                    
-                    const updateSavings = state.savings.filter((savings) => savings._id !== action.payload._id);
-                    return {
-                      ...state,
-                      savings: updateSavings,
-                      loading: false,
-                      error: null,
-                    };
-              
-                  case 'DELETE_SAVING_FAILURE':
-                    return {
-                      ...state,
-                      loading: false,
-                      error: 'Error deleting savings',
-                    };
-          
-      default:
-        return state;
-    }
-  };
-  
-  export default financeReducer;
-  
+  events: [],
+  volunteers: [],
+  loading: false,
+  error: null,
+};
+
+const volunteersReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'FETCH_EVENT_SUCCESS':
+      return {
+        ...state,
+        events: action.payload,
+        loading: false,
+        error: null,
+      };
+
+    case 'FETCH_EVENT_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error fetching event data',
+      };
+
+    case 'FETCH_DATA_LOADING':
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case 'ADD_EVENT_SUCCESS':
+      return {
+        ...state,
+        events: [...state.events, action.payload],
+        loading: false,
+        error: null,
+      };
+
+    case 'ADD_EVENT_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error adding event',
+      };
+
+    case 'EDIT_EVENT_SUCCESS':
+      const updatedEventIndex = state.events.findIndex((event) => event._id === action.payload._id);
+      const updatedEvent = [...state.events];
+
+      if (updatedEventIndex !== -1) {
+        updatedEvent[updatedEventIndex] = action.payload;
+      }
+
+      return {
+        ...state,
+        events: updatedEvent,
+        loading: false,
+        error: null,
+      };
+
+    case 'EDIT_EVENT_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error editing event',
+      };
+
+    case 'DELETE_EVENT_SUCCESS':
+      const updatedEvents = state.events.filter((event) => event._id !== action.payload._id);
+      return {
+        ...state,
+        events: updatedEvents,
+        loading: false,
+        error: null,
+      };
+
+    case 'DELETE_EVENT_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error deleting event',
+      };
+
+    case 'FETCH_VOLUNTEER_SUCCESS':
+      return {
+        ...state,
+        volunteers: action.payload,
+        loading: false,
+        error: null,
+      };
+
+    case 'FETCH_VOLUNTEER_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error fetching volunteer data',
+      };
+
+    case 'ADD_VOLUNTEER_SUCCESS':
+      return {
+        ...state,
+        volunteers: [...state.volunteers, action.payload],
+        loading: false,
+        error: null,
+      };
+
+    case 'ADD_VOLUNTEER_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error adding volunteer',
+      };
+
+    case 'EDIT_VOLUNTEER_SUCCESS':
+      const updatedVolunteerIndex = state.volunteers.findIndex((volunteer) => volunteer._id === action.payload._id);
+      const updatedVolunteer = [...state.volunteers];
+
+      if (updatedVolunteerIndex !== -1) {
+        updatedVolunteer[updatedVolunteerIndex] = action.payload;
+      }
+
+      return {
+        ...state,
+        volunteers: updatedVolunteer,
+        loading: false,
+        error: null,
+      };
+
+    case 'EDIT_VOLUNTEER_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error editing volunteer',
+      };
+
+    case 'DELETE_VOLUNTEER_SUCCESS':
+      const updatedVolunteers = state.volunteers.filter((volunteer) => volunteer._id !== action.payload._id);
+      return {
+        ...state,
+        volunteers: updatedVolunteers,
+        loading: false,
+        error: null,
+      };
+
+    case 'DELETE_VOLUNTEER_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: 'Error deleting volunteer',
+      };
+
+    default:
+      return state;
+  }
+};
+
+export default volunteersReducer;

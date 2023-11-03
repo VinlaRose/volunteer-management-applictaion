@@ -1,54 +1,53 @@
 
-export const fetchIncome = () => async (dispatch) => {
+export const fetchEvents = () => async (dispatch) => {
     try {
-      //   dispatch({ type: 'FETCH_DATA_LOADING' })
+      // dispatch({ type: 'FETCH_DATA_LOADING' })
       const response = await fetch(
-        'https://expense-tracker.vinlarose.repl.co/income'
+        'https://volunteer-management.vinlarose.repl.co/events'
       );
       const data = await response.json();
       console.log(data);
-      dispatch({ type: 'FETCH_INCOME_SUCCESS', payload: data });
+      dispatch({ type: 'FETCH_EVENT_SUCCESS', payload: data.data });
     } catch (error) {
       console.error('Error fetching income data:', error);
-      dispatch({ type: 'FETCH_INCOME_FAILURE' }); // Correct the action type
+      dispatch({ type: 'FETCH_EVENT_FAILURE' }); 
     }
   };
 
-  export const addIncome = (incomeData) => async (dispatch) => {
+  export const addEvent = (eventData) => async (dispatch) => {
     try {
       // Dispatch a loading action if needed
-      // dispatch({ type: 'ADD_INCOME_LOADING' });
-      console.log(incomeData)
+      // dispatch({ type: 'ADD_EVENT_LOADING' });
+      console.log(eventData)
   
-      const response = await fetch('https://expense-tracker.vinlarose.repl.co/income', {
+      const response = await fetch('https://volunteer-management.vinlarose.repl.co/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(incomeData),
+        body: JSON.stringify(eventData),
       });
   
       if (!response.ok) {
-        // Handle non-successful response (e.g., status code 4xx or 5xx)
+       
         throw new Error('Failed to add income');
       }
   
-      const addedIncome = await response.json();
-      console.log(addedIncome.data)
-      dispatch({ type: 'ADD_INCOME_SUCCESS', payload: addedIncome.data });
+      const addedEvent = await response.json();
+      console.log(addedEvent.data)
+      dispatch({ type: 'ADD_EVENT_SUCCESS', payload: addedEvent.data });
     } catch (error) {
       console.error('Error adding income:', error);
-      dispatch({ type: 'ADD_INCOME_FAILURE' });
+      dispatch({ type: 'ADD_EVENT_FAILURE' });
     }
   };
   
-  export const deleteIncome = (incomeId) => async (dispatch) => {
+  export const deleteEvent = (eventId) => async (dispatch) => {
     try {
-      // Dispatch a loading action if needed
-      // dispatch({ type: 'DELETE_INCOME_LOADING' });
-      console.log(incomeId);
+      
+      console.log(eventId);
   
-      const response = await fetch(`https://expense-tracker.vinlarose.repl.co/income/${incomeId}`, {
+      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/events/${eventId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -57,72 +56,88 @@ export const fetchIncome = () => async (dispatch) => {
   
       if (!response.ok) {
         
-        throw new Error('Failed to delete income');
+        throw new Error('Failed to delete event');
       }
   
-      const deletedIncome = await response.json();
-      console.log(deletedIncome.data);
-      dispatch({ type: 'DELETE_INCOME_SUCCESS', payload: deletedIncome.data });
+      const deletedEvent = await response.json();
+      console.log(deletedEvent.data);
+      dispatch({ type: 'DELETE_EVENT_SUCCESS', payload: deletedEvent.data });
     } catch (error) {
       console.error('Error deleting income:', error);
-      dispatch({ type: 'DELETE_INCOME_FAILURE' });
+      dispatch({ type: 'DELETE_EVENT_FAILURE' });
     }
   };
   
   
-  
-  
-  
-  
-  export const fetchExpense = () => async (dispatch) => {
+  export const editEvent = (updatedEvent) => async (dispatch) => {
     try {
-      
-      const response = await fetch(
-        'https://expense-tracker.vinlarose.repl.co/expenses'
-      );
+      const eventId = updatedEvent._id; 
+  
+   
+      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/events/${eventId}`, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedEvent),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to edit event');
+      }
+  
+      const editedEvent = await response.json();
+      console.log(editedEvent)
+      dispatch({ type: 'EDIT_EVENT_SUCCESS', payload: editedEvent.data });
+    } catch (error) {
+      console.error('Error editing event:', error);
+      dispatch({ type: 'EDIT_EVENT_FAILURE' });
+    }
+  };
+  
+
+  export const fetchVolunteers = () => async (dispatch) => {
+    try {
+      const response = await fetch('https://volunteer-management.vinlarose.repl.co/volunteers');
       const data = await response.json();
       console.log(data);
-      dispatch({ type: 'FETCH_EXPENSE_SUCCESS', payload: data });
+      dispatch({ type: 'FETCH_VOLUNTEER_SUCCESS', payload: data.data });
     } catch (error) {
-      console.error('Error fetching expense data:', error);
-      dispatch({ type: 'FETCH_EXPENSE_FAILURE' }); 
+      console.error('Error fetching volunteer data:', error);
+      dispatch({ type: 'FETCH_VOLUNTEER_FAILURE' });
     }
   };
-
-  export const addExpense = (expenseData) => async (dispatch) => {
-    try {
-   
-      console.log(expenseData)
   
-      const response = await fetch('https://expense-tracker.vinlarose.repl.co/expenses', {
+  export const addVolunteer = (volunteerData) => async (dispatch) => {
+    try {
+      console.log(volunteerData);
+  
+      const response = await fetch('https://volunteer-management.vinlarose.repl.co/volunteers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(expenseData),
+        body: JSON.stringify(volunteerData),
       });
   
       if (!response.ok) {
-        // Handle non-successful response (e.g., status code 4xx or 5xx)
-        throw new Error('Failed to add expense');
+        throw new Error('Failed to add volunteer');
       }
   
-      const addedexpense = await response.json();
-      console.log(addedexpense.data)
-      dispatch({ type: 'ADD_EXPENSE_SUCCESS', payload: addedexpense.data });
+      const addedVolunteer = await response.json();
+      console.log(addedVolunteer.data);
+      dispatch({ type: 'ADD_VOLUNTEER_SUCCESS', payload: addedVolunteer.data });
     } catch (error) {
-      console.error('Error adding expense:', error);
-      dispatch({ type: 'ADD_EXPENSE_FAILURE' });
+      console.error('Error adding volunteer:', error);
+      dispatch({ type: 'ADD_VOLUNTEER_FAILURE' });
     }
   };
   
-  export const deleteExpense = (expenseId) => async (dispatch) => {
+  export const deleteVolunteer = (volunteerId) => async (dispatch) => {
     try {
-      // Dispatch a loading action if needed
-      // dispatch({ type: 'DELETE_EXPENSE_LOADING' });
-      console.log(expenseId);
+      console.log(volunteerId);
   
-      const response = await fetch(`https://expense-tracker.vinlarose.repl.co/expenses/${expenseId}`, {
+      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/volunteers/${volunteerId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -130,89 +145,40 @@ export const fetchIncome = () => async (dispatch) => {
       });
   
       if (!response.ok) {
-        
-        throw new Error('Failed to delete expense');
+        throw new Error('Failed to delete volunteer');
       }
   
-      const deletedexpense = await response.json();
-      console.log(deletedexpense.data);
-      dispatch({ type: 'DELETE_EXPENSE_SUCCESS', payload: deletedexpense.data });
+      const deletedVolunteer = await response.json();
+      console.log(deletedVolunteer.data);
+      dispatch({ type: 'DELETE_VOLUNTEER_SUCCESS', payload: deletedVolunteer.data });
     } catch (error) {
-      console.error('Error deleting expense:', error);
-      dispatch({ type: 'DELETE_EXPENSE_FAILURE' });
+      console.error('Error deleting volunteer:', error);
+      dispatch({ type: 'DELETE_VOLUNTEER_FAILURE' });
     }
   };
   
-  
-  
-  
-  export const fetchSavings = () => async (dispatch) => {
+  export const editVolunteer = (updatedVolunteer) => async (dispatch) => {
     try {
-      
-      const response = await fetch(
-        'https://expense-tracker.vinlarose.repl.co/savings'
-      );
-      const data = await response.json();
-      console.log(data);
-      dispatch({ type: 'FETCH_SAVING_SUCCESS', payload: data });
-    } catch (error) {
-      console.error('Error fetching expense data:', error);
-      dispatch({ type: 'FETCH_SAVING_FAILURE' }); 
-    }
-  };
-
-  export const addSaving = (savingData) => async (dispatch) => {
-    try {
-   
-      console.log(savingData)
+      const volunteerId = updatedVolunteer._id;
   
-      const response = await fetch('https://expense-tracker.vinlarose.repl.co/savings', {
+      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/volunteers/${volunteerId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(savingData),
+        body: JSON.stringify(updatedVolunteer),
       });
   
       if (!response.ok) {
-        // Handle non-successful response (e.g., status code 4xx or 5xx)
-        throw new Error('Failed to add saving');
+        throw new Error('Failed to edit volunteer');
       }
   
-      const addedsaving = await response.json();
-      console.log(addedsaving.data)
-      dispatch({ type: 'ADD_SAVING_SUCCESS', payload: addedsaving.data });
+      const editedVolunteer = await response.json();
+      console.log(editedVolunteer);
+      dispatch({ type: 'EDIT_VOLUNTEER_SUCCESS', payload: editedVolunteer.data });
     } catch (error) {
-      console.error('Error adding saving:', error);
-      dispatch({ type: 'ADD_SAVING_FAILURE' });
+      console.error('Error editing volunteer:', error);
+      dispatch({ type: 'EDIT_VOLUNTEER_FAILURE' });
     }
   };
   
-  export const deleteSavings = (savingId) => async (dispatch) => {
-    try {
-   
-      console.log(savingId);
-  
-      const response = await fetch(`https://expense-tracker.vinlarose.repl.co/savings/${savingId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (!response.ok) {
-        
-        throw new Error('Failed to delete saving');
-      }
-  
-      const deletedsaving = await response.json();
-      console.log(deletedsaving.data);
-      dispatch({ type: 'DELETE_SAVING_SUCCESS', payload: deletedsaving.data });
-    } catch (error) {
-      console.error('Error deleting saving:', error);
-      dispatch({ type: 'DELETE_SAVING_FAILURE' });
-    }
-  };
-  
-  
- 

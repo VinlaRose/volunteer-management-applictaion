@@ -5,34 +5,8 @@
 h1{
     color: #C38154;
 }
-/* DataTable.css */
 
-table {
-    width: 90%;
-    border-collapse: collapse;
-    margin: auto;
-  }
-  
-  thead {
-    background-color: #C38154;
-    color: white;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #F9E0BB;
-  }
-  
-  tbody tr:hover {
-    background-color: #FFC26F;
-  }
-  
-  
+
   nav {
     background-color: #884A39;
     height: 50px;
@@ -156,3 +130,118 @@ table {
     display: flex;
   }
   
+/* Add these styles to your CSS file */
+
+.event-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.event-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-card > div {
+  margin-bottom: 10px;
+}
+
+.event-card button {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.button-container {
+  text-align: right;
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+  .event-card {
+    width: 100%;
+  }
+}
+/* Style the Volunteer Page container */
+div {
+  text-align: center;
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.save {
+  background-color: #2196F3;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+
+input[type="text"] {
+  width: 100%;
+  padding: 6px 10px;
+  box-sizing: border-box;
+}
+
+.AddVolunteer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
