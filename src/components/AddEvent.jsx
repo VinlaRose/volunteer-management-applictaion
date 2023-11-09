@@ -40,40 +40,86 @@ dispatch(addEvent(newEvent));
   };
 
   return (
-    <div>
-      <h2>Add Event</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Event Name:</label>
-          <input type="text" value={eventName} onChange={(e) => setEventName(e.target.value)} />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        </div>
-        <div>
-          <label>Time:</label>
-          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-        </div>
-        <div>
-          <label>Location:</label>
-          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-        </div>
-        <div>
-          <label>Required Volunteer Roles:</label>
-          <input
-            type="text"
-            value={requiredVolunteerRoles}
-            onChange={(e) => setRequiredVolunteerRoles(e.target.value.split(','))}
-          />
-        </div>
-        <button type="submit">Add Event</button>
-      </form>
+    <div className="event-form">
+  <h2>Add Event</h2>
+  <form onSubmit={handleSubmit}>
+    <div className="form-row">
+      <label className="form-label" htmlFor="eventName">
+        Event Name:
+      </label>
+      <input
+        type="text"
+        id="eventName"
+        className="form-input"
+        value={eventName}
+        onChange={(e) => setEventName(e.target.value)}
+      />
     </div>
+    <div className="form-row">
+      <label className="form-label" htmlFor="date">
+        Date:
+      </label>
+      <input
+        type="date"
+        id="date"
+        className="form-input"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
+    </div>
+    <div className="form-row">
+      <label className="form-label" htmlFor="time">
+        Time:
+      </label>
+      <input
+        type="time"
+        id="time"
+        className="form-input"
+        value={time}
+        onChange={(e) => setTime(e.target.value)}
+      />
+    </div>
+    <div className="form-row">
+      <label className="form-label" htmlFor="location">
+        Location:
+      </label>
+      <input
+        type="text"
+        id="location"
+        className="form-input"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+      />
+    </div>
+    <div className="form-row">
+      <label className="form-label" htmlFor="description">
+        Description:
+      </label>
+      <textarea
+        id="description"
+        className="form-input"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+    </div>
+    <div className="form-row">
+      <label className="form-label" htmlFor="requiredVolunteerRoles">
+        Required Volunteer Roles:
+      </label>
+      <input
+        type="text"
+        id="requiredVolunteerRoles"
+        className="form-input"
+        value={requiredVolunteerRoles.join(', ')}
+        onChange={(e) => setRequiredVolunteerRoles(e.target.value.split(','))}
+      />
+    </div>
+    <button type="submit" className="submit-button">
+      Add Event
+    </button>
+  </form>
+</div>
+
   );
 };
 

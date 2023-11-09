@@ -86,38 +86,62 @@ useEffect(() => {
     setAvailability(selectedDays)
   };
   return (
-    <div>
-      <h2>Add Volunteers</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Volunteer Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div>
-          <label>Events:</label>
-          <select value={selectedEvent} onChange={handleSelectChange}>
-      <option value="">Select an option</option>
-      {allEvents.map((event) => (
-        <option key={event._id} value={event._id}>
-          {event.eventName}
-        </option>
-      ))}
-    </select>
-        </div>
-        <div>
-          <label>Phone:</label>
-          <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
-        </div>
-        <div>
-      <label htmlFor="daySelector">Select Days:</label>
+    
+    <div class="volunteer-form">
+  <h2>Add Volunteers</h2>
+  <form class="volunteer-form" onSubmit={handleSubmit}>
+    <div class="form-group">
+      <label for="volunteerName">Volunteer Name:</label>
+      <input
+        type="text"
+        id="volunteerName"
+        class="form-control"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="text"
+        id="email"
+        class="form-control"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+    </div>
+    <div class="form-group">
+      <label for="events">Events:</label>
+      <select
+        id="events"
+        class="form-control"
+        value={selectedEvent}
+        onChange={handleSelectChange}
+      >
+        <option value="">Select an option</option>
+        {allEvents.map((event) => (
+          <option key={event._id} value={event._id}>
+            {event.eventName}
+          </option>
+        ))}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input
+        type="text"
+        id="phone"
+        class="form-control"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+    </div>
+    <div class="form-group">
+      <label for="daySelector">Select Days:</label>
       <select
         id="daySelector"
+        class="form-control"
         multiple
-         
         value={selectedDays}
         onChange={handleDayChange}
       >
@@ -128,29 +152,32 @@ useEffect(() => {
           </option>
         ))}
       </select>
-      <div>
+      <div class="selected-days">
         <label>Selected Days:</label>
         <div>{selectedDays.join(', ')}</div>
       </div>
-      </div>
-        <div>
-          <label>Skills:</label>
-          {skills.map((skill, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                value={skill}
-                onChange={(e) => handleSkillChange(index, e.target.value)}
-              />
-            </div>
-          ))}
-          <button type="button" onClick={handleAddSkill}>
-            Add Skill
-          </button>
-        </div>
-        <button type="submit">Add Volunteer</button>
-      </form>
     </div>
+    <div class="form-group">
+      <label for="skills">Skills:</label>
+      {skills.map((skill, index) => (
+        <div class="skill" key={index}>
+          <input
+            type="text"
+            id={`skill${index}`}
+            class="form-control"
+            value={skill}
+            onChange={(e) => handleSkillChange(index, e.target.value)}
+          />
+        </div>
+      ))}
+      <button class="add-skill" type="button" onClick={handleAddSkill}>
+        Add Skill
+      </button>
+    </div>
+    <button class="submit-button" type="submit">Add Volunteer</button>
+  </form>
+</div>
+
   );
 };
 

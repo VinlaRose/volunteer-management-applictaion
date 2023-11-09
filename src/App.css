@@ -245,3 +245,135 @@ h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+/* Container Styles */
+.event-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Heading Styles */
+.event-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Form Row Styles (horizontal layout) */
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Label Styles */
+.form-label {
+  flex: 1;
+  font-weight: bold;
+}
+
+/* Input Styles */
+.form-input {
+  flex: 2;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.form-input[type="textarea"] {
+  flex: 2;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.volunteer-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+}
+
+
+.volunteer-form h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.volunteer-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+
+.form-group label {
+  font-weight: bold;
+}
+
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.form-control select {
+  cursor: pointer;
+}
+
+
+.form-control select[multiple] {
+  height: auto;
+}
+
+
+.add-skill, .submit-button {
+  padding: 10px 20px;
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-skill:hover, .submit-button:hover {
+  background-color: #0056b3;
+}
+
+
+.selected-days {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+
+.skill {
+  margin-bottom: 8px;
+}
