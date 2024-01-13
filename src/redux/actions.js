@@ -3,7 +3,7 @@ export const fetchEvents = () => async (dispatch) => {
     try {
       // dispatch({ type: 'FETCH_DATA_LOADING' })
       const response = await fetch(
-        'https://volunteer-management.vinlarose.repl.co/events'
+        'https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/events'
       );
       const data = await response.json();
       console.log(data);
@@ -20,7 +20,7 @@ export const fetchEvents = () => async (dispatch) => {
       // dispatch({ type: 'ADD_EVENT_LOADING' });
       console.log(eventData)
   
-      const response = await fetch('https://volunteer-management.vinlarose.repl.co/events', {
+      const response = await fetch('https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export const fetchEvents = () => async (dispatch) => {
       
       console.log(eventId);
   
-      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/events/${eventId}`, {
+      const response = await fetch(`https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/events/${eventId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const fetchEvents = () => async (dispatch) => {
       const eventId = updatedEvent._id; 
   
    
-      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/events/${eventId}`, {
+      const response = await fetch(`https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/events/${eventId}`, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export const fetchEvents = () => async (dispatch) => {
 
   export const fetchVolunteers = () => async (dispatch) => {
     try {
-      const response = await fetch('https://volunteer-management.vinlarose.repl.co/volunteers');
+      const response = await fetch('https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/volunteers');
       const data = await response.json();
       console.log(data);
       dispatch({ type: 'FETCH_VOLUNTEER_SUCCESS', payload: data.data });
@@ -112,7 +112,7 @@ export const fetchEvents = () => async (dispatch) => {
     try {
       console.log(volunteerData);
   
-      const response = await fetch('https://volunteer-management.vinlarose.repl.co/volunteers', {
+      const response = await fetch('https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/volunteers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ export const fetchEvents = () => async (dispatch) => {
     try {
       console.log(volunteerId);
   
-      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/volunteers/${volunteerId}`, {
+      const response = await fetch(`https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/volunteers/${volunteerId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ export const fetchEvents = () => async (dispatch) => {
     try {
       const volunteerId = updatedVolunteer._id;
   
-      const response = await fetch(`https://volunteer-management.vinlarose.repl.co/volunteers/${volunteerId}`, {
+      const response = await fetch(`https://3a6c0f80-717c-416f-9f7f-87969ce3e739-00-38g56lzus3htq.global.replit.dev/volunteers/${volunteerId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
